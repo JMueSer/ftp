@@ -1,0 +1,39 @@
+# Standalone and Network 
+listen=YES
+listen_ipv6=NO
+connect_from_port_20=YES
+
+# Banner and Messages
+ftpd_banner={{ vsftpd_banner }}
+dirmessage_enable=YES
+message_file=.message
+
+# Access Control 
+anonymous_enable=YES
+local_enable=YES
+write_enable=YES
+anon_upload_enable=NO
+
+# Bandwidth and Timeouts 
+local_max_rate={{ vsftpd_local_max_rate }}
+anon_max_rate={{ vsftpd_anon_max_rate }}
+idle_session_timeout={{ vsftpd_idle_timeout }}
+max_clients={{ vsftpd_max_clients }}
+
+# Jailing (Chroot) Logic
+chroot_local_user=YES
+allow_writeable_chroot=YES
+chroot_list_enable=YES
+chroot_list_file=/etc/vsftpd.chroot_list
+
+# SSL/TLS Configuration 
+ssl_enable=YES
+allow_anon_ssl=YES
+force_local_data_ssl=YES
+force_local_logins_ssl=YES
+ssl_tlsv1=YES
+ssl_sslv2=NO
+ssl_sslv3=YES
+require_ssl_reuse=NO
+rsa_cert_file={{ vsftpd_cert_path }}
+rsa_private_key_file={{ vsftpd_key_path }}
