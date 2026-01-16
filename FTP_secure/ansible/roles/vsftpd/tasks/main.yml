@@ -1,0 +1,55 @@
+- name: Install vsftpd and certbot
+  ansible.builtin.apt:
+    name: [vsftpd, certbot]
+    state: present
+    update_cache: true
+
+- name: Create system users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    password: "{{ 'password123' | password_hash('sha512') }}"
+  loop: "{{ vsftpd_ftp_users }}"
+
+- name: Create text files in user's home
+  ansible.builtin.copy:
+    content: "Archivo de prueba de {{ item.name }}"
+    dest: "/home/{{ item.name }}/{{ item.name }}1.txt"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0644'
+  loop: "{{ vsftpd_ftp_users }}"
+
+- name: Create message file
+  ansible.builtin.copy:
+    content: "---You have accessed the public directory server of 'sistema.sol'---"
+    dest: "{{ vsftpd_root }}/.message"
+    owner: root
+    group: ftp
+    mode: '0644'
+
+- name: Configure chroot_list
+  ansible.builtin.lineinfile:
+    path: /etc/vsftpd.chroot_list
+    line: "maria"
+    create: true
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Generate SSL certificate
+  ansible.builtin.command: >
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048
+    -keyout /etc/ssl/private/example.test.key
+    -out /etc/ssl/certs/example.test.pem
+    -subj "/C=ES/ST=Granada/L=Granada/O=Sistema/CN=ftp.example.test"
+  args:
+    creates: /etc/ssl/certs/example.test.pem
+
+- name: Configure vsftpd
+  ansible.builtin.template:
+    src: vsftpd.conf.j2
+    dest: /etc/vsftpd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart vsftpd

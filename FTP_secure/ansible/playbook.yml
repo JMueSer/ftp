@@ -1,0 +1,6 @@
+---
+- name: Deploy and Configure Secure FTP Server
+  hosts: all
+  become: true
+  roles:
+    - vsftpd
