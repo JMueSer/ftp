@@ -20,10 +20,12 @@ The practice required the implementation of the following specific features:
 
 ---
 
-## 🔍 Technical Verification Audit
+## 🔍 Technical Audit & Expected Results
 
-Click on any command below to reveal the expected terminal output and verification logic.
+Follow these commands to verify the server's compliance with the requirements.
 
+### 1. SSL/TLS Certificate Audit
+Verify that the automated "bot" generated the certificate with the correct identity:
 <details>
 <summary><code>vagrant ssh -c "sudo openssl x509 -in /etc/ssl/certs/example.test.pem -text -noout | grep Subject"</code></summary>
 
@@ -31,4 +33,10 @@ Click on any command below to reveal the expected terminal output and verificati
 >
 **Expected Output:**
 ```text
-Subject: C = ES, ST = Granada, L = Granada, O = Sistema, CN = ftp.example.test
+Subject: C = ES, ST = Granada, L = Granada, O = Sistema, CN = ftp.example.test ```
+
+</details>
+
+<details> <summary><code>vagrant ssh -c "sudo ss -tlnp | grep :21"</code></summary>
+
+Verification: Confirms the FTP service is active and listening on the standard port 21.
