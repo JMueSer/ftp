@@ -36,6 +36,8 @@ All files passed with 0 errors, 0 warnings.
 ```
 </details>
 
+---
+
 ## 📖 Project Overview
 The goal of this project is to deploy a fully functional and secure FTP server using **vsftpd** on a **Debian** virtual machine. The entire infrastructure is automated using **Vagrant** for virtualization and **Ansible** for configuration management, ensuring a reproducible and hardened environment.
 
