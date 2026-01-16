@@ -1,6 +1,6 @@
 # Secure FTP Server Deployment Project
 
-## 🛠️ Modular Implementation & Automation
+## Modular Implementation & Automation
 
 This project follows a **modular and reusable design** using **Ansible Roles**. Instead of static files, we use **Jinja2 templates**, which allow the configuration to adapt dynamically based on variables (YAML).
 
@@ -19,7 +19,7 @@ To fulfill the project requirements, the following parameters were dynamically i
 
 ---
 
-## 🛡️ Code Quality & Linting
+## Code Quality & Linting
 
 To ensure the infrastructure is syntactically correct and follows Ansible best practices, you can run a **Linting test**. This guarantees that the YAML files, templates, and task logic are clean and efficient.
 
@@ -38,10 +38,10 @@ All files passed with 0 errors, 0 warnings.
 
 ---
 
-## 📖 Project Overview
+## Project Overview
 The goal of this project is to deploy a fully functional and secure FTP server using **vsftpd** on a **Debian** virtual machine. The entire infrastructure is automated using **Vagrant** for virtualization and **Ansible** for configuration management, ensuring a reproducible and hardened environment.
 
-### 📝 Project Requirements
+### Project Requirements
 The practice required the implementation of the following specific features:
 1.  **Messaging & Banners**: 
     - A custom welcome banner for every connection.
@@ -58,7 +58,7 @@ The practice required the implementation of the following specific features:
 
 ---
 
-## 🔍 Technical Audit & Expected Results
+## Technical Audit & Expected Results
 
 Follow these commands to verify the server's compliance with the requirements.
 
@@ -101,7 +101,7 @@ Connected to 192.168.56.10.
 220 -- Welcome to the FTP server of 'sistema.sol'
 Name (192.168.56.10:user): anonymous
 331 Please specify the password.
-230-Bienvenido al directorio público de sistema.sol. Disfruta de tu estancia.
+230-You have accessed the public directory server of 'sistema.sol'
 230 Login successful.
 ```
 </details>
