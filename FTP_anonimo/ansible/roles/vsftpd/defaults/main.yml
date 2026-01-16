@@ -1,7 +1,0 @@
-# Nota: al declarar variables dentro de un rol, el prefijo debe coincidir con el rol
-
-vsftpd_banner: "-- Mirror de Opensuse para 'sistema.sol'"
-vsftpd_root: "/srv/ftp"
-vsftpd_max_clients: 200
-vsftpd_max_rate: 51200
-vsftpd_idle_timeout: 30
