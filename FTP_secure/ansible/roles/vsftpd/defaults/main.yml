@@ -10,7 +10,7 @@ vsftpd_idle_timeout: 720
 vsftpd_cert_path: "/etc/ssl/certs/example.test.pem"
 vsftpd_key_path: "/etc/ssl/private/example.test.key"
 
-ftp_users:
+vsftpd_ftp_users:
   - { name: 'luis', jailed: true }
   - { name: 'maria', jailed: false }
   - { name: 'miguel', jailed: true }

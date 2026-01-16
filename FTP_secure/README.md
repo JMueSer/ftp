@@ -1,5 +1,41 @@
 # Secure FTP Server Deployment Project
 
+## 🛠️ Modular Implementation & Automation
+
+This project follows a **modular and reusable design** using **Ansible Roles**. Instead of static files, we use **Jinja2 templates**, which allow the configuration to adapt dynamically based on variables (YAML).
+
+### Key Features of the Design:
+* **Decoupled Configuration**: Sensitive data (passwords, IPs) and tunable parameters (bandwidth limits) are stored in `defaults/main.yml`, keeping the logic separate from the data.
+* **Jinja2 Dynamic Logic**: The `vsftpd.conf.j2` template uses conditional logic and loops to:
+    * Automatically generate the `chroot_list` based on user attributes.
+    * Apply different bandwidth rates depending on the user type.
+    * Toggle SSL requirements dynamically.
+
+### Critical Template Modifications
+To fulfill the project requirements, the following parameters were dynamically injected into the `vsftpd.conf.j2`:
+* **Security**: `force_local_logins_ssl=YES` and `ssl_enable=YES` to ensure encrypted traffic.
+* **Performance**: `local_max_rate={{ local_limit }}` and `anon_max_rate={{ anon_limit }}` using variables for easy scaling.
+* **Isolation**: `chroot_local_user=YES` combined with a dynamic list for exceptions.
+
+---
+
+## 🛡️ Code Quality & Linting
+
+To ensure the infrastructure is syntactically correct and follows Ansible best practices, you can run a **Linting test**. This guarantees that the YAML files, templates, and task logic are clean and efficient.
+
+**Run the following command to validate the project:**
+<details>
+<summary><code>ansible-lint ansible</code></summary>
+
+> **Verification:** Analyzes the playbook and roles for potential errors, deprecated modules, or formatting issues.
+
+**Expected Output:**
+```text
+Examining 8 files
+All files passed with 0 errors, 0 warnings.
+```
+</details>
+
 ## 📖 Project Overview
 The goal of this project is to deploy a fully functional and secure FTP server using **vsftpd** on a **Debian** virtual machine. The entire infrastructure is automated using **Vagrant** for virtualization and **Ansible** for configuration management, ensuring a reproducible and hardened environment.
 
