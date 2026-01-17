@@ -1,0 +1,6 @@
+--
+-- Servidor anónimo
+-- Máximo de 200 conexiones activas simultáneas.
+-- Ancho de banda de 50KB por usuario
+-- Timeout de inactividad de 30 segundos
+--

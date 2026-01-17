@@ -1,0 +1,5 @@
+- name: Servidor FTP anonimo OpenSuse
+  hosts: ftp
+  become: true
+  roles:
+    - vsftpd
